@@ -1,0 +1,119 @@
+<app-back />
+<div class="container-fluid mt-3">
+
+    <!-- Header -->
+    <div class="mb-4">
+        <h3 class="fw-bold mb-1">Detalle de el profesor</h3>
+        <p class="text-muted mb-0">
+            Información general del profesor.
+        </p>
+    </div>
+
+    @if (teacher) {
+
+        <!-- Header card -->
+        <div class="card border mb-4">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center gap-3">
+
+                    <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center"
+                         style="width: 65px; height: 65px; font-size: 2rem;">
+                        <i class="bi bi-person-badge-fill"></i>
+                    </div>
+
+                    <div class="flex-grow-1">
+                        <h4 class="fw-bold mb-1">{{ teacher.name }}</h4>
+                        <span class="text-muted">
+                            Profesor #{{ teacher.id }}
+                        </span>
+                    </div>
+
+                    <span
+                        class="badge rounded-pill"
+                        [ngClass]="teacher.status ? 'text-bg-success' : 'text-bg-danger'">
+                        {{ teacher.status ? 'Activo' : 'Inactivo' }}
+                    </span>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Information -->
+        <div class="card border">
+
+            <div class="card-header bg-white py-3">
+                <h5 class="fw-semibold mb-0">
+                    <i class="bi bi-person-badge text-primary me-2"></i>
+                    Información general
+                </h5>
+            </div>
+
+            <div class="card-body p-4">
+                <div class="row g-4">
+
+                    <div class="col-md-12">
+                        <small class="text-muted d-block mb-1">Nombre completo</small>
+                        <span>
+                            <i class="bi bi-person text-secondary me-2"></i>
+                            {{ teacher.name }}
+                        </span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted d-block mb-1">Correo electrónico</small>
+                        <span>
+                            <i class="bi bi-envelope text-secondary me-2"></i>
+                            {{ teacher.email }}
+                        </span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted d-block mb-1">Teléfono</small>
+                        <span>
+                            <i class="bi bi-telephone text-secondary me-2"></i>
+                            {{ teacher.phone }}
+                        </span>
+                    </div>
+
+                    <div class="col-md-12">
+                        <small class="text-muted d-block mb-1">Especialidad</small>
+                        <span>
+                            <i class="bi bi-journal-bookmark text-secondary me-2"></i>
+                            {{ teacher.specialty }}
+                        </span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted d-block mb-1">Estado</small>
+                        @if (teacher.status) {
+                            <span class="badge text-bg-success">
+                                <i class="bi bi-check-circle me-1"></i>
+                                Activo
+                            </span>
+                        } @else {
+                            <span class="badge text-bg-danger">
+                                <i class="bi bi-x-circle me-1"></i>
+                                Inactivo
+                            </span>
+                        }
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted d-block mb-1">Identificador</small>
+                        <span class="fw-semibold">#{{ teacher.id }}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    } @else {
+
+        <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            No se encontró información de el profesor.
+        </div>
+
+    }
+
+</div>
