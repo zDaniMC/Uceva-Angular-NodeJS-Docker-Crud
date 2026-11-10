@@ -1,0 +1,114 @@
+<app-back />
+
+<div class="container-fluid py-4">
+
+    <!-- Encabezado -->
+    <div class="mb-4">
+        <h3 class="fw-bold mb-1">Editar aula</h3>
+        <p class="text-muted mb-0">
+            Modifica la información del aula seleccionada.
+        </p>
+    </div>
+
+    <!-- Formulario -->
+    <div class="card border">
+        <div class="card-header bg-white py-3">
+            <h5 class="mb-0">
+                <i class="bi bi-pencil-square me-2"></i>
+                Información del aula
+            </h5>
+        </div>
+
+        <div class="card-body">
+
+            <form [formGroup]="classroomForm" (ngSubmit)="updateClassroom()">
+
+                <div class="row g-3">
+
+                    <!-- Identificador -->
+                    <div class="col-md-6">
+                        <label for="id" class="form-label">
+                            Identificador
+                        </label>
+
+                        <input type="text" id="id" class="form-control" formControlName="id" readonly>
+
+                        <small class="text-muted">
+                            El identificador no puede modificarse.
+                        </small>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="code" class="form-label">
+                            Código *
+                        </label>
+
+                        <input type="text" id="code" class="form-control" formControlName="code"
+                            placeholder="Ej: A-101">
+
+                        @if (classroomForm.get('code')?.touched && classroomForm.get('code')?.invalid) {
+                        <small class="text-danger">El código es obligatorio (máximo 20 caracteres).</small>
+                        }
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="building" class="form-label">
+                            Edificio *
+                        </label>
+
+                        <input type="text" id="building" class="form-control" formControlName="building"
+                            placeholder="Ej: Edificio A">
+
+                        @if (classroomForm.get('building')?.touched && classroomForm.get('building')?.invalid) {
+                        <small class="text-danger">El edificio es obligatorio.</small>
+                        }
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="capacity" class="form-label">
+                            Capacidad *
+                        </label>
+
+                        <input type="number" id="capacity" class="form-control" formControlName="capacity"
+                            placeholder="Número de personas (1 a 500)">
+
+                        @if (classroomForm.get('capacity')?.touched && classroomForm.get('capacity')?.invalid) {
+                        <small class="text-danger">La capacidad debe ser un número entre 1 y 500.</small>
+                        }
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="col-12">
+                        <div class="form-check form-switch mt-2">
+                            <input class="form-check-input" type="checkbox" id="status" formControlName="status">
+
+                            <label class="form-check-label" for="status">
+                                Aula activa
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="my-4">
+
+                <!-- Acciones -->
+                <div class="d-flex justify-content-end gap-2">
+
+                    <button type="button" class="btn btn-outline-secondary" (click)="goToList()">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="btn btn-primary" [disabled]="classroomForm.invalid">
+                        <i class="bi bi-save me-2"></i>
+                        Actualizar aula
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>

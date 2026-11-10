@@ -1,0 +1,111 @@
+<app-back />
+<div class="container-fluid mt-3">
+
+    <!-- Header -->
+    <div class="mb-4">
+        <h3 class="fw-bold mb-1">Detalle de el aula</h3>
+        <p class="text-muted mb-0">
+            Información general del aula.
+        </p>
+    </div>
+
+    @if (classroom) {
+
+        <!-- Header card -->
+        <div class="card border mb-4">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center gap-3">
+
+                    <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center"
+                         style="width: 65px; height: 65px; font-size: 2rem;">
+                        <i class="bi bi-door-open-fill"></i>
+                    </div>
+
+                    <div class="flex-grow-1">
+                        <h4 class="fw-bold mb-1">{{ classroom.code }}</h4>
+                        <span class="text-muted">
+                            Aula #{{ classroom.id }}
+                        </span>
+                    </div>
+
+                    <span
+                        class="badge rounded-pill"
+                        [ngClass]="classroom.status ? 'text-bg-success' : 'text-bg-danger'">
+                        {{ classroom.status ? 'Activo' : 'Inactivo' }}
+                    </span>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Information -->
+        <div class="card border">
+
+            <div class="card-header bg-white py-3">
+                <h5 class="fw-semibold mb-0">
+                    <i class="bi bi-door-open text-primary me-2"></i>
+                    Información general
+                </h5>
+            </div>
+
+            <div class="card-body p-4">
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+                        <small class="text-muted d-block mb-1">Código</small>
+                        <span>
+                            <i class="bi bi-upc-scan text-secondary me-2"></i>
+                            {{ classroom.code }}
+                        </span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted d-block mb-1">Edificio</small>
+                        <span>
+                            <i class="bi bi-building text-secondary me-2"></i>
+                            {{ classroom.building }}
+                        </span>
+                    </div>
+
+                    <div class="col-md-12">
+                        <small class="text-muted d-block mb-1">Capacidad</small>
+                        <span>
+                            <i class="bi bi-people text-secondary me-2"></i>
+                            {{ classroom.capacity }}
+                        </span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted d-block mb-1">Estado</small>
+                        @if (classroom.status) {
+                            <span class="badge text-bg-success">
+                                <i class="bi bi-check-circle me-1"></i>
+                                Activo
+                            </span>
+                        } @else {
+                            <span class="badge text-bg-danger">
+                                <i class="bi bi-x-circle me-1"></i>
+                                Inactivo
+                            </span>
+                        }
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted d-block mb-1">Identificador</small>
+                        <span class="fw-semibold">#{{ classroom.id }}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    } @else {
+
+        <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            No se encontró información de el aula.
+        </div>
+
+    }
+
+</div>
